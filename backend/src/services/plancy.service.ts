@@ -9,11 +9,15 @@ class PlancyService {
     })
   }
 
-  async getQuotes (page: number) {
-    return await prisma.quotes.findMany({
-      skip: 3 * page,
-      take: 3
+  async getQuotes (pageNumber: number) {
+    const PAGE_SIZE = 3
+    const quotes = await prisma.quotes.findMany({
+      skip: PAGE_SIZE * pageNumber,
+      take: PAGE_SIZE
     })
+    const items = await prisma.quotes.count()
+    const pages = Math.ceil(items / PAGE_SIZE)
+    return { pages, quotes }
   }
 }
 
