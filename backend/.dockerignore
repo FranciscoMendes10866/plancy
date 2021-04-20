@@ -1,0 +1,9 @@
+node_modules
+.eslintignore
+.eslintrc.yml
+jest.config.js
+.gitignore
+README.md
+docker-compose.yml
+Dockerfile
+.env
